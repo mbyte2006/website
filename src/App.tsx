@@ -237,7 +237,7 @@ function Logo({ className = "" }: { className?: string }) {
       <img 
         src="/IMG-20260109-WA0043.jpg" 
         alt="Mbyte Logo" 
-        className="w-full h-full object-contain"
+        className="w-32 h-auto object-contain""
       />
     </div>
   );
