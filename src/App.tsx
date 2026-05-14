@@ -234,35 +234,14 @@ export default function App() {
 function Logo({ className = "" }: { className?: string }) {
   return (
     <div className={`relative ${className}`}>
-      <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(139,92,246,0.5)]">
-        <defs>
-          <linearGradient id="gearGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#ffffff" />
-            <stop offset="50%" stopColor="#a855f7" />
-            <stop offset="100%" stopColor="#7e22ce" />
-          </linearGradient>
-        </defs>
-        {/* Gear Body */}
-        <path 
-          d="M50 20 L55 5 L65 7 L65 22 A30 30 0 0 1 78 35 L93 35 L95 45 L80 50 A30 30 0 0 1 78 65 L93 65 L90 75 L75 78 A30 30 0 0 1 65 88 L65 93 L55 95 L50 80 A30 30 0 0 1 35 78 L20 93 L10 88 L22 75 A30 30 0 0 1 12 65 L5 65 L5 55 L20 50 A30 30 0 0 1 22 35 L7 35 L7 25 L22 22 A30 30 0 0 1 35 12 L35 7 L45 5 Z" 
-          fill="url(#gearGradient)"
-        />
-        {/* Center Circle */}
-        <circle cx="50" cy="53" r="22" fill="#0a0a0a" />
-        {/* Text M and BYTE */}
-        <text x="50" y="55" fontSize="22" fontWeight="900" fill="white" textAnchor="middle" fontFamily="Inter, sans-serif">M</text>
-        <text x="50" y="68" fontSize="8" fontWeight="800" fill="#a855f7" textAnchor="middle" letterSpacing="1" fontFamily="Inter, sans-serif">BYTE</text>
-        {/* Brush Tool */}
-        <path 
-          d="M75 10 C85 10 95 20 90 35 L80 25 Z" 
-          fill="#a855f7" 
-          transform="rotate(15, 80, 25)"
-        />
-      </svg>
+      <img 
+        src="/IMG-20260109-WA0043.jpg" 
+        alt="Mbyte Logo" 
+        className="w-full h-full object-contain"
+      />
     </div>
   );
 }
-
 function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <a 
