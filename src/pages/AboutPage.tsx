@@ -44,19 +44,27 @@ export default function AboutPage() {
             {/* Narrative */}
             <div className="max-w-2xl space-y-5 text-white/60 text-lg leading-[1.85]">
               <p>
-                We are a <span className="text-white font-semibold">Physical AI infrastructure company.</span>
+                We are building the AI infrastructure that enables{' '}
+                <span className="text-white/80">robots</span>,{' '}
+                <span className="text-white/80">kiosks</span>, and{' '}
+                <span className="text-white/80">connected devices</span> to understand, converse, and interact with people.
               </p>
               <p>
-                We believe that the future of robotics shouldn't be stalled by the complexity of AI development.
-                We are building the foundational infrastructure that allows any hardware manufacturer—whether creating
-                systems for <span className="text-white/80">elderly care</span>,{' '}
-                <span className="text-white/80">interactive education</span>, or{' '}
-                <span className="text-white/80">autonomous workplace assistance</span>—to instantly grant their
-                machines the ability to hear, remember, and act in the physical world.
+                Through a unified cloud platform, we provide{' '}
+                <span className="text-white/80">speech recognition</span>,{' '}
+                <span className="text-white/80">language intelligence</span>,{' '}
+                <span className="text-white/80">memory</span>, and{' '}
+                <span className="text-white/80">voice synthesis</span>, allowing hardware creators to add
+                conversational AI capabilities without building and maintaining complex AI systems themselves.
               </p>
               <p>
-                We handle the heavy cognitive computing so creators can focus on{' '}
-                <span className="text-white/80">form, mechanics, and physical function.</span>
+                Whether you're developing{' '}
+                <span className="text-white/80">educational robots</span>,{' '}
+                <span className="text-white/80">elderly care assistants</span>,{' '}
+                <span className="text-white/80">smart kiosks</span>, or{' '}
+                <span className="text-white/80">next-generation connected devices</span>, we handle the cognitive
+                layer so you can focus on{' '}
+                <span className="text-white font-semibold">hardware, user experience, and real-world deployment.</span>
               </p>
             </div>
           </motion.div>
