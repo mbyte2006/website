@@ -1,25 +1,27 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
+import { ArrowRight, Download } from 'lucide-react';
 import Footer from '../components/Footer';
 
-type Track = 'C++' | 'Python' | 'ROS';
+type Track = 'Arduino IDE' | 'Python' | 'ROS';
 
-const TRACKS: Track[] = ['C++', 'Python', 'ROS'];
+const TRACKS: Track[] = ['Arduino IDE', 'Python', 'ROS'];
 
 const FILE_NAMES: Record<Track, string> = {
-  'C++':    'robot_brain.cpp',
-  'Python': 'robot_brain.py',
-  'ROS':    'robot_node.cpp',
+  'Arduino IDE': 'mbyte_audio_robot.ino',
+  'Python':      'robot_brain.py',
+  'ROS':         'robot_node.cpp',
 };
 
 const LANG_LABELS: Record<Track, string> = {
-  'C++':    'C++',
-  'Python': 'Python 3',
-  'ROS':    'ROS 2 / C++',
+  'Arduino IDE': 'Arduino C++',
+  'Python':      'Python 3',
+  'ROS':         'ROS 2 / C++',
 };
 
 export default function DocsPage() {
-  const [activeTrack, setActiveTrack] = useState<Track>('C++');
+  const [activeTrack, setActiveTrack] = useState<Track>('Arduino IDE');
 
   return (
     <div className="min-h-screen bg-black text-white flex flex-col">
@@ -106,104 +108,110 @@ export default function DocsPage() {
             transition={{ duration: 0.3, ease: 'easeOut' }}
             className="flex-1 min-w-0"
           >
-            {/* Track header */}
-            <div className="mb-6">
-              <h2 className="text-2xl font-bold text-white mb-1">{activeTrack} SDK</h2>
-              <p className="text-white/40 text-sm">{LANG_LABELS[activeTrack]} · Mbyte AI Brain Integration</p>
-            </div>
+            {activeTrack === 'Arduino IDE' ? (
+              <ArduinoReadyPanel />
+            ) : (
+              <>
+                {/* Track header */}
+                <div className="mb-6">
+                  <h2 className="text-2xl font-bold text-white mb-1">{activeTrack} SDK</h2>
+                  <p className="text-white/40 text-sm">{LANG_LABELS[activeTrack]} · Mbyte AI Brain Integration</p>
+                </div>
 
-            {/* Code window */}
-            <div className="rounded-xl overflow-hidden border border-white/[0.08] bg-[#0c0c0c]">
-              {/* Title bar */}
-              <div className="flex items-center gap-2 px-4 py-3 bg-white/[0.04] border-b border-white/[0.06]">
-                <span className="w-3 h-3 rounded-full bg-red-500/50" />
-                <span className="w-3 h-3 rounded-full bg-amber-500/50" />
-                <span className="w-3 h-3 rounded-full bg-green-500/50" />
-                <span className="ml-3 text-xs text-white/30 font-mono tracking-wide">
-                  {FILE_NAMES[activeTrack]}
-                </span>
-                <span className="ml-auto text-[10px] text-white/20 font-mono uppercase tracking-widest">
-                  {LANG_LABELS[activeTrack]}
-                </span>
-              </div>
-
-              {/* Code body */}
-              <div className="p-6 font-mono text-sm overflow-x-auto">
-                <div className="flex gap-5">
-                  {/* Line numbers */}
-                  <div className="flex flex-col gap-[5px] text-white/15 text-right text-xs pt-[2px] select-none shrink-0">
-                    {Array.from({ length: 12 }, (_, i) => (
-                      <span key={i + 1}>{i + 1}</span>
-                    ))}
+                {/* Code window */}
+                <div className="rounded-xl overflow-hidden border border-white/[0.08] bg-[#0c0c0c]">
+                  {/* Title bar */}
+                  <div className="flex items-center gap-2 px-4 py-3 bg-white/[0.04] border-b border-white/[0.06]">
+                    <span className="w-3 h-3 rounded-full bg-red-500/50" />
+                    <span className="w-3 h-3 rounded-full bg-amber-500/50" />
+                    <span className="w-3 h-3 rounded-full bg-green-500/50" />
+                    <span className="ml-3 text-xs text-white/30 font-mono tracking-wide">
+                      {FILE_NAMES[activeTrack]}
+                    </span>
+                    <span className="ml-auto text-[10px] text-white/20 font-mono uppercase tracking-widest">
+                      {LANG_LABELS[activeTrack]}
+                    </span>
                   </div>
 
-                  {/* Code content */}
-                  <div className="flex flex-col gap-[5px] flex-1 min-w-0">
-                    <span className="text-emerald-400/55">
-                      {'/**'}
-                    </span>
-                    <span className="text-emerald-400/55">
-                      {' * Documentation Coming Soon.'}
-                    </span>
-                    <span className="text-emerald-400/55">
-                      {' * SDK and API endpoints are currently'}
-                    </span>
-                    <span className="text-emerald-400/55">
-                      {' * under active development.'}
-                    </span>
-                    <span className="text-emerald-400/55">
-                      {' */'}
-                    </span>
-                    <span className="text-white/0">&nbsp;</span>
-                    <span className="text-violet-400/40">
-                      {'#include <mbyte_brain.h>'}
-                    </span>
-                    <span className="text-white/0">&nbsp;</span>
-                    <span className="text-blue-400/35">
-                      {'MbyteBrain'}
-                      <span className="text-white/30">{' brain;'}</span>
-                    </span>
-                    <span className="text-white/0">&nbsp;</span>
-                    <span className="text-white/20">
-                      {'// ...'}
-                    </span>
-                    <span className="text-white/25">
-                      <span className="cursor-blink">▌</span>
-                    </span>
+                  {/* Code body */}
+                  <div className="p-6 font-mono text-sm overflow-x-auto">
+                    <div className="flex gap-5">
+                      {/* Line numbers */}
+                      <div className="flex flex-col gap-[5px] text-white/15 text-right text-xs pt-[2px] select-none shrink-0">
+                        {Array.from({ length: 12 }, (_, i) => (
+                          <span key={i + 1}>{i + 1}</span>
+                        ))}
+                      </div>
+
+                      {/* Code content */}
+                      <div className="flex flex-col gap-[5px] flex-1 min-w-0">
+                        <span className="text-emerald-400/55">
+                          {'/**'}
+                        </span>
+                        <span className="text-emerald-400/55">
+                          {' * Documentation Coming Soon.'}
+                        </span>
+                        <span className="text-emerald-400/55">
+                          {' * SDK and API endpoints are currently'}
+                        </span>
+                        <span className="text-emerald-400/55">
+                          {' * under active development.'}
+                        </span>
+                        <span className="text-emerald-400/55">
+                          {' */'}
+                        </span>
+                        <span className="text-white/0">&nbsp;</span>
+                        <span className="text-violet-400/40">
+                          {'#include <mbyte_brain.h>'}
+                        </span>
+                        <span className="text-white/0">&nbsp;</span>
+                        <span className="text-blue-400/35">
+                          {'MbyteBrain'}
+                          <span className="text-white/30">{' brain;'}</span>
+                        </span>
+                        <span className="text-white/0">&nbsp;</span>
+                        <span className="text-white/20">
+                          {'// ...'}
+                        </span>
+                        <span className="text-white/25">
+                          <span className="cursor-blink">▌</span>
+                        </span>
+                      </div>
+                    </div>
+
+                    {/* Skeleton placeholder lines */}
+                    <div className="mt-8 flex flex-col gap-2.5 pl-10">
+                      {[68, 45, 78, 35, 55, 42].map((w, i) => (
+                        <div
+                          key={i}
+                          className="h-2 rounded-sm bg-white/[0.06] animate-pulse"
+                          style={{ width: `${w}%`, animationDelay: `${i * 0.12}s` }}
+                        />
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                {/* Skeleton placeholder lines */}
-                <div className="mt-8 flex flex-col gap-2.5 pl-10">
-                  {[68, 45, 78, 35, 55, 42].map((w, i) => (
-                    <div
-                      key={i}
-                      className="h-2 rounded-sm bg-white/[0.06] animate-pulse"
-                      style={{ width: `${w}%`, animationDelay: `${i * 0.12}s` }}
-                    />
+                {/* Coming soon info cards */}
+                <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                  {['Authentication', 'Audio Streaming', 'Memory API'].map((topic, i) => (
+                    <motion.div
+                      key={topic}
+                      initial={{ opacity: 0, y: 12 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: 0.1 + i * 0.07, ease: 'easeOut' }}
+                      className="flex items-center gap-3 p-4 rounded-xl bg-white/[0.03] border border-white/[0.07]"
+                    >
+                      <div className="w-2 h-2 rounded-full bg-violet-500/50 animate-pulse shrink-0" />
+                      <span className="text-sm text-white/40 font-medium">{topic}</span>
+                      <span className="ml-auto text-[10px] text-amber-400/60 font-semibold uppercase tracking-wider shrink-0">
+                        Soon
+                      </span>
+                    </motion.div>
                   ))}
                 </div>
-              </div>
-            </div>
-
-            {/* Coming soon info cards */}
-            <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {['Authentication', 'Audio Streaming', 'Memory API'].map((topic, i) => (
-                <motion.div
-                  key={topic}
-                  initial={{ opacity: 0, y: 12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.1 + i * 0.07, ease: 'easeOut' }}
-                  className="flex items-center gap-3 p-4 rounded-xl bg-white/[0.03] border border-white/[0.07]"
-                >
-                  <div className="w-2 h-2 rounded-full bg-violet-500/50 animate-pulse shrink-0" />
-                  <span className="text-sm text-white/40 font-medium">{topic}</span>
-                  <span className="ml-auto text-[10px] text-amber-400/60 font-semibold uppercase tracking-wider shrink-0">
-                    Soon
-                  </span>
-                </motion.div>
-              ))}
-            </div>
+              </>
+            )}
           </motion.div>
         </div>
       </div>
@@ -217,10 +225,9 @@ export default function DocsPage() {
 
 function TrackIcon({ track, active }: { track: Track; active: boolean }) {
   const cls = `transition-colors duration-200 ${active ? 'text-violet-400' : 'text-white/25'}`;
-  if (track === 'C++') return (
-    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" className={cls}>
-      <path d="M6 12h4M8 10v4" />
-      <path d="M14 12h4M16 10v4" />
+  if (track === 'Arduino IDE') return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={cls}>
+      <path d="M7 12c-1.5-2-4-1.7-4 0s2.5 2 4 0c1.5-2 4-2 5 0s3.5 2 5 0c1.5-2 4-1.7 4 0s-2.5 2-4 0" />
     </svg>
   );
   if (track === 'Python') return (
@@ -236,5 +243,49 @@ function TrackIcon({ track, active }: { track: Track; active: boolean }) {
       <path d="M12 3v3M12 18v3M3 12h3M18 12h3" />
       <path d="M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1" />
     </svg>
+  );
+}
+
+/* ─── Arduino IDE — ready track panel ────────────────────────────────────── */
+
+function ArduinoReadyPanel() {
+  return (
+    <div>
+      <div className="mb-6">
+        <div className="flex items-center gap-3 flex-wrap mb-1">
+          <h2 className="text-2xl font-bold text-white">Arduino IDE</h2>
+          <span className="px-2.5 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-[10px] font-bold uppercase tracking-wider">
+            Available now
+          </span>
+        </div>
+        <p className="text-white/40 text-sm">mbyte_audio_robot · ESP32-S3 Voice AI Library</p>
+      </div>
+
+      <div className="rounded-xl border border-white/[0.08] bg-white/[0.03] p-7 flex flex-col gap-5">
+        <p className="text-white/60 text-sm leading-relaxed max-w-xl">
+          Turn any ESP32-S3 board into a voice AI robot connected to the MByte cloud — mic
+          capture, wake-word detection, Opus audio streaming, and speaker playback in a single
+          Arduino library. Full setup guide, pin diagram, and API reference are ready.
+        </p>
+
+        <div className="flex flex-wrap gap-3">
+          <Link
+            to="/docs/arduino-library"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-bold text-sm bg-gradient-to-br from-violet-500 to-purple-700 shadow-[0_0_20px_rgba(139,92,246,0.35)] hover:shadow-[0_0_36px_rgba(139,92,246,0.55)] transition-shadow duration-300"
+          >
+            View Full Documentation
+            <ArrowRight className="w-4 h-4" />
+          </Link>
+          <a
+            href="https://github.com/mbyte2026/mbyte_audio_robot/releases/download/v1.0.0/mbyte_audio_robot-v1.0.0.zip"
+            download
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full font-semibold text-sm text-white/70 bg-white/[0.05] border border-white/10 hover:bg-white/[0.09] hover:text-white transition-all duration-200"
+          >
+            <Download className="w-4 h-4" />
+            Download Library
+          </a>
+        </div>
+      </div>
+    </div>
   );
 }
