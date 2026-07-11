@@ -291,33 +291,64 @@ function SettingRow({
 
 function PinsSection() {
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-6">
       <SectionHeading>Pin Diagram</SectionHeading>
       <p className="text-white/40 text-sm max-w-2xl -mt-2 mb-1">
         Default wiring shown below — every pin is overridable in code via{' '}
         <code className="text-violet-300 font-mono text-xs">setMicPin()</code> and{' '}
         <code className="text-violet-300 font-mono text-xs">setSpeakerPin()</code>.
       </p>
+
+      {/* Wiring diagram images */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 max-w-2xl">
+        {[
+          { src: '/wiring_diagram2.jpeg', label: 'Wiring Diagram' },
+          { src: '/ELECTRIC_circuit.png', label: 'Circuit Diagram' },
+        ].map(({ src, label }) => (
+          <div key={src} className="rounded-xl overflow-hidden border border-white/[0.08] bg-white/[0.03]">
+            <div className="px-4 py-2.5 bg-white/[0.04] border-b border-white/[0.06]">
+              <span className="text-xs font-semibold text-white/40 uppercase tracking-widest">{label}</span>
+            </div>
+            <img src={src} alt={label} className="w-full h-auto object-contain" />
+          </div>
+        ))}
+      </div>
+
+      {/* Pin tables */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 max-w-2xl">
         <PinTable
           title="Microphone (I2S, e.g. INMP441)"
           rows={[
-            { label: 'WS / LRCLK', pin: 'GPIO 5' },
-            { label: 'SCK / BCLK', pin: 'GPIO 6' },
-            { label: 'DIN / SD',   pin: 'GPIO 4' },
+            { label: 'Mic SCK',  pin: 'GPIO 6' },
+            { label: 'Mic WS',   pin: 'GPIO 5' },
+            { label: 'Mic SD',   pin: 'GPIO 4' },
+            { label: 'Mic L/R',  pin: 'GND' },
+            { label: 'Mic GND',  pin: 'GND' },
+            { label: 'Mic VDD',  pin: '3.3V' },
           ]}
         />
         <PinTable
           title="Speaker amp (I2S, e.g. MAX98357A)"
           rows={[
-            { label: 'DOUT / SD',  pin: 'GPIO 11' },
-            { label: 'BCLK',       pin: 'GPIO 12' },
-            { label: 'LRCK / WS',  pin: 'GPIO 13' },
+            { label: 'Speaker BCLK', pin: 'GPIO 12' },
+            { label: 'Speaker LRC',  pin: 'GPIO 13' },
+            { label: 'Speaker DIN',  pin: 'GPIO 11' },
+            { label: 'Speaker GAIN', pin: '3.3V' },
+            { label: 'Speaker SD',   pin: '---' },
+            { label: 'Speaker GND',  pin: 'GND' },
+            { label: 'Speaker VIN',  pin: '3.3V' },
           ]}
         />
       </div>
     </div>
   );
+}
+
+function pinValueColor(pin: string): string {
+  if (pin.startsWith('GPIO')) return 'text-violet-300 font-semibold';
+  if (pin === 'GND')  return 'text-red-400 font-semibold';
+  if (pin === '3.3V') return 'text-emerald-400 font-semibold';
+  return 'text-white/25';
 }
 
 function PinTable({ title, rows }: { title: string; rows: { label: string; pin: string }[] }) {
@@ -330,7 +361,7 @@ function PinTable({ title, rows }: { title: string; rows: { label: string; pin: 
         {rows.map(r => (
           <div key={r.label} className="grid grid-cols-2 px-5 py-3 text-sm font-mono">
             <span className="text-white/60">{r.label}</span>
-            <span className="text-violet-300 font-semibold">{r.pin}</span>
+            <span className={pinValueColor(r.pin)}>{r.pin}</span>
           </div>
         ))}
       </div>
