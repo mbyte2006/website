@@ -386,6 +386,9 @@ function QuickStartSection() {
             <span className="text-violet-400/80">{'#include <mbyte_audio_robot.h>'}</span>
             <span>&nbsp;</span>
             <span><span className="text-blue-400/80">void</span> <span className="text-white/80">setup</span>() {'{'}</span>
+            <span className="pl-4 text-white/30">{'// On first boot (or whenever saved WiFi credentials fail), the device starts'}</span>
+            <span className="pl-4 text-white/30">{'// a setup hotspot named "MByte-Setup-XXXX". Connect your phone to it and a'}</span>
+            <span className="pl-4 text-white/30">{'// page should pop up automatically (or visit http://192.168.4.1)'}</span>
             <span className="pl-4 text-white/70">Serial.begin(115200);</span>
             <span className="pl-4 text-white/70">mbyte.setMicSens(1);</span>
             <span className="pl-4 text-white/70">mbyte.begin();</span>
