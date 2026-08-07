@@ -1,21 +1,13 @@
 import { motion } from 'motion/react';
 import { ChevronRight } from 'lucide-react';
-import CoreBrainModules from '../components/CoreBrainModules';
-import WeSupport from '../components/WeSupport';
-import HowItWorks from '../components/HowItWorks';
-import OurCoreFocus from '../components/OurCoreFocus';
-import FeedbackSection from '../components/FeedbackSection';
+import ProductCards from '../components/ProductCards';
 import Footer from '../components/Footer';
 
 export default function LandingPage() {
   return (
     <>
       <HeroBanner />
-      <CoreBrainModules />
-      <WeSupport />
-      <HowItWorks />
-      <OurCoreFocus />
-      <FeedbackSection />
+      <ProductCards />
       <Footer />
     </>
   );
@@ -72,10 +64,10 @@ function HeroBanner() {
             transition={{ duration: 0.8, delay: 0.4, ease: 'easeOut' }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.97 }}
-            onClick={() => document.getElementById('core-brain')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => document.getElementById('product-cards')?.scrollIntoView({ behavior: 'smooth' })}
             className="group mt-2 flex items-center gap-3 px-10 py-4 rounded-full font-bold text-base tracking-wide bg-gradient-to-br from-violet-500 to-purple-700 shadow-[0_0_30px_rgba(139,92,246,0.45)] hover:shadow-[0_0_55px_rgba(139,92,246,0.75)] transition-shadow duration-300"
           >
-            Get Started
+            See Our Flagship
             <ChevronRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
           </motion.button>
         </motion.div>

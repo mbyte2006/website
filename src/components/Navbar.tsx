@@ -31,8 +31,9 @@ export default function Navbar() {
 
         {/* Desktop nav links */}
         <div className="hidden md:flex items-center gap-1">
-          <NavPill to="/docs">Documentation</NavPill>
-          <NavPill to="/about">About Us</NavPill>
+          <NavPill to="/autopilot">Autopilot</NavPill>
+          <NavPill to="/docs">Docs</NavPill>
+          <NavPill to="/about">About</NavPill>
         </div>
 
         {/* Mobile hamburger */}
@@ -57,8 +58,9 @@ export default function Navbar() {
             className="mt-2 rounded-2xl bg-black/70 backdrop-blur-xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.5)] overflow-hidden"
           >
             <div className="flex flex-col p-2 gap-1">
-              <MobileNavLink to="/docs"  onClick={close}>Documentation</MobileNavLink>
-              <MobileNavLink to="/about" onClick={close}>About Us</MobileNavLink>
+              <MobileNavLink to="/autopilot" onClick={close}>Autopilot</MobileNavLink>
+              <MobileNavLink to="/docs"      onClick={close}>Documentation</MobileNavLink>
+              <MobileNavLink to="/about"     onClick={close}>About Us</MobileNavLink>
             </div>
           </motion.div>
         )}

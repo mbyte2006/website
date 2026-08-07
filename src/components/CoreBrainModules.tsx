@@ -19,14 +19,18 @@ export default function CoreBrainModules() {
           transition={{ duration: 0.65, ease: "easeOut" }}
           className="text-center mb-16"
         >
+          <span className="inline-block px-3 py-1 rounded-full bg-violet-500/10 border border-violet-500/20 text-violet-400 text-xs font-semibold tracking-widest uppercase mb-5">
+            For Developers
+          </span>
           <h2
             className="text-4xl md:text-5xl font-black tracking-tight mb-4 text-white"
             style={{ fontFamily: "var(--font-orbitron)" }}
           >
-            Core Brain Modules
+            The Unified Cognitive Layer
           </h2>
           <p className="text-white/50 text-lg max-w-xl mx-auto">
-            Intelligent modules to breathe life into your robots.
+            The same AI infrastructure powering our autonomous systems — available
+            to developers building any voice-enabled robot or connected device.
           </p>
         </motion.div>
 
